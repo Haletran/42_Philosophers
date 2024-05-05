@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:04:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/25 20:19:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:31:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void	ft_join(t_table *table)
+static void	ft_join(t_table *table)
 {
 	t_philo	*philo;
 
@@ -26,7 +26,7 @@ void	ft_join(t_table *table)
 	}
 }
 
-void	ft_free_fork(t_table *table)
+static void	ft_free_fork(t_table *table)
 {
 	t_philo	*philo;
 
@@ -41,7 +41,7 @@ void	ft_free_fork(t_table *table)
 	}
 }
 
-void	ft_free_lst(t_philo *philo)
+static void	ft_free_lst(t_philo *philo)
 {
 	t_philo	*tmp;
 
@@ -61,6 +61,8 @@ void	ft_free(t_table **table)
 	ft_free_fork((*table));
 	ft_free_lst((*table)->philo);
 	free((*table)->server);
+	pthread_mutex_destroy(&(*table)->infos->print_mutex);
+	pthread_mutex_destroy(&(*table)->infos->data_mutex);
 	free((*table)->infos);
 	free((*table));
 }

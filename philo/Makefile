@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 13:05:32 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/03 19:40:53 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/05 19:17:33 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,15 @@ MAKEFLAGS += --no-print-directory --silent
 endif
 
 NAME := philo
-CC := cc 
-CFLAGS := -Wextra -Wall -Werror -g -O3
-DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
+CC := cc
+CFLAGS := -Wextra -Wall -Werror -g
+DEBUG_FLAGS := -fsanitize=address
+
+ifdef DEBUG
+    ifeq ($(DEBUG), 1)
+        CFLAGS += $(DEBUG_FLAGS)
+	endif
+endif
 
 SRCS	= 	src/main.c \
 			src/init/init.c \

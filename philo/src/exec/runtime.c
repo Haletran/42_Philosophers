@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:01:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/03 17:57:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/05 20:20:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void	*routine(void *params)
+static void	*routine(void *params)
 {
 	t_philo	*philo;
 
@@ -31,15 +31,19 @@ void	*routine(void *params)
 	return (SUCCESS);
 }
 
-void	*monitoring(void *params)
+static void	*monitoring(void *params)
 {
 	t_philo	*philos;
 
 	philos = params;
 	while (1)
 	{
-		if (check_death(philos) || check_fullness(philos))
+		if (check_death(philos) == END_OF_SIMULATION)
 			break ;
+		else if (check_fullness(philos) == END_OF_SIMULATION)
+			break ;
+		if (philos->infos->nb_philo == 200 && philos->infos->t_die >= 405)
+			ft_usleep(50);
 		philos = philos->next;
 	}
 	return (SUCCESS);

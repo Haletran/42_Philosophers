@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:14:13 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/25 20:18:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:40:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	*setup_infos(t_table *table, char **argv)
 	table->infos->t_sleep = ft_atoi(argv[4]);
 	table->infos->counter = 0;
 	pthread_mutex_init(&table->infos->print_mutex, NULL);
+	pthread_mutex_init(&table->infos->data_mutex, NULL);
 	if (argv[5])
 		table->infos->nb_meals = ft_atoi(argv[5]);
 	return (table);
@@ -89,7 +90,7 @@ int	parse_input(char **str)
 				return (FAILURE);
 			j++;
 		}
-		if (ft_atoi(str[i]) <= 0)
+		if (ft_atoi(str[i]) <= 0 || ft_strlen(str[i]) > 10)
 			return (FAILURE);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:01:13 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/03 14:58:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:11:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_infos
 	int					counter;
 	int					end_of_simulation;
 	pthread_mutex_t		print_mutex;
+	pthread_mutex_t		data_mutex;
 }						t_infos;
 
 typedef struct s_table
@@ -81,7 +82,6 @@ void					*init_table(char **argv, t_table *table);
 t_philo					*init_stack(t_philo *a, int nb_philo, t_table *table);
 int						parse_input(char **argv);
 int						setup_philo(t_table *table);
-void					*routine(void *params);
 void					print_status(t_philo *philos);
 void					ft_join_server(t_table *table);
 int						check_end_simulation(t_philo *philos);
@@ -99,6 +99,7 @@ int						ft_atoi(const char *str);
 int						print_error(char *str);
 void					*ft_calloc(size_t elementCount, size_t elementSize);
 void					ft_free(t_table **table);
+int						ft_strlen(char *str);
 
 /*LST*/
 void					*ft_lst_new(int content, t_table *table);
