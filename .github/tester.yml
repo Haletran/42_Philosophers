@@ -1,0 +1,27 @@
+name: Philo CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Compilation
+      run: make -C philo
+    
+    - name: Testing make re
+      run: make re -C philo
+
+    - name: Norminette
+      run: make norminette -C philo
+
+    - name: Run philo-tester
+      run: make build -C philo

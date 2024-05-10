@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
+#    By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 13:05:32 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/05 19:17:33 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/11 00:22:53 by baptiste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,17 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
+
+# GIHUB ACTIONS
+
+build: all
+	bash <(wget -qO- https://raw.githubusercontent.com/Haletran/42_philosopher_tester/main/tester.sh)
+
+norminette:
+	@python3 -m pip install --upgrade pip setuptools
+	@python3 -m pip install norminette
+	@-norminette 
 
 
 re: fclean all
