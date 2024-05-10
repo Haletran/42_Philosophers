@@ -24,4 +24,7 @@ jobs:
       run: make norminette -C philo
 
     - name: Run philo-tester
-      run: make build -C philo
+      run: |
+        wget -qO- https://raw.githubusercontent.com/Haletran/42_philosopher_tester/main/tester.sh > tester.sh
+        chmod +x tester.sh
+        ./tester.sh
