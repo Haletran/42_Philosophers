@@ -6,7 +6,7 @@
 #    By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 13:05:32 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/11 00:30:19 by baptiste         ###   ########.fr        #
+#    Updated: 2024/05/11 00:34:49 by baptiste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ fclean: clean
 
 
 # GIHUB ACTIONS
+build: all
+	bash tester.sh
 
 norminette:
 	@python3 -m pip install --upgrade pip setuptools
